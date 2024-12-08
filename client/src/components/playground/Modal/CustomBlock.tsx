@@ -20,6 +20,7 @@ import {
   CredenzaDescription,
   CredenzaHeader,
   CredenzaTitle,
+
 } from "@/components/credeza"
 import { Plus } from 'lucide-react'
 
@@ -55,9 +56,12 @@ export default function CustomBlock({ isOpen, onOpenChange, onSubmitCustomBlock 
         </Button>
       </div>
       <Credenza open={isOpen} onOpenChange={onOpenChange}>
-        <CredenzaContent className="border-white/10 bg-[#faf3dd] ">
+        <CredenzaContent className="border-white/10">
           <CredenzaHeader>
-            <CredenzaTitle className="text-black">Add a Custom Block</CredenzaTitle>
+            <CredenzaTitle className="text-white">Add a Custom Block</CredenzaTitle>
+            <CredenzaDescription className="text-white/80">
+              Enter your Solidity code below to create a custom block.
+            </CredenzaDescription>
           </CredenzaHeader>
           <CredenzaBody>
             <Form {...form}>
@@ -67,21 +71,37 @@ export default function CustomBlock({ isOpen, onOpenChange, onSubmitCustomBlock 
                   name="blockName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-black">Block Name</FormLabel>
+                      <FormLabel className="text-white">Block Name</FormLabel>
                       <FormControl>
                         <input
                           {...field}
-                          className="w-full p-2 rounded bg-[#d5bdaf] text-black border-2 border-[#2A2A2A] focus:border-[#4A4A4A]"
+                          className="w-full p-2 rounded bg-[#1F1F1F] text-white border border-[#2A2A2A] focus:border-[#4A4A4A]"
                         />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-
+                <FormField
+                  control={form.control}
+                  name="solidityCode"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-white">Solidity Code</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          {...field}
+                          placeholder="Enter your Solidity code here..."
+                          className="font-mono h-40 bg-[#1F1F1F] text-white border-[#2A2A2A] focus:border-[#4A4A4A]"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
                 <div className="flex justify-end space-x-2">
                   <CredenzaClose asChild>
-                    <Button variant="outline" type="button">
+                    <Button variant="secondary" type="button">
                       Cancel
                     </Button>
                   </CredenzaClose>
